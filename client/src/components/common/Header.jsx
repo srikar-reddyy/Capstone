@@ -20,7 +20,6 @@ function Header() {
   function handleProfileClick() {
     navigate('/profile');
   }
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
