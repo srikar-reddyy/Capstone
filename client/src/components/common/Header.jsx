@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { userAuthorContextObj } from '../contexts/UserAuthorContext';
 import { useClerk, useUser } from '@clerk/clerk-react';
-import '../../App.css';
-import '../admin/Users'
 
 function Header() {
   const { signOut } = useClerk();
@@ -20,58 +18,67 @@ function Header() {
   function handleProfileClick() {
     navigate('/profile');
   }
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div className="container">
-        <Link className="navbar-brand" to="/">LOGO</Link>
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
+    <nav style={{ backgroundColor: 'red', padding: '10px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Link to="/" style={{ color: 'white', textDecoration: 'none', fontSize: '24px' }}>CapStone</Link>
+        <div>
+          <ul style={{ listStyle: 'none', display: 'flex', gap: '15px', margin: '0', padding: '0' }}>
+            <li>
+              <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
             </li>
             {!isSignedIn ? (
               <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signin">Sign In</Link>
+                <li>
+                  <Link to="/signin" style={{ color: 'white', textDecoration: 'none' }}>Sign In</Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signup">Sign Up</Link>
+                <li>
+                  <Link to="/signup" style={{ color: 'white', textDecoration: 'none' }}>Sign Up</Link>
                 </li>
               </>
             ) : (
               <>
-                <li className="nav-item d-flex align-items-center">
+                <li style={{ display: 'flex', alignItems: 'center' }}>
                   <img
                     src={currentUser?.profileImageUrl || "fallback-image.jpg"}
                     alt="Profile"
-                    className="rounded-circle border"
-                    width="40"
-                    height="40"
-                    style={{ cursor: 'pointer', marginLeft: '15px' }}
+                    style={{
+                      borderRadius: '50%',
+                      border: '2px solid white',
+                      width: '40px',
+                      height: '40px',
+                      cursor: 'pointer',
+                      marginLeft: '15px'
+                    }}
                     onClick={handleProfileClick}
                   />
                 </li>
-                <li className="nav-item">
-                  <button className="btn btn-danger ms-3" onClick={handleSignOut}>
+                <li>
+                  <button
+                    style={{
+                      backgroundColor: 'red',
+                      color: 'white',
+                      border: 'none',
+                      padding: '5px 10px',
+                      cursor: 'pointer',
+                      marginLeft: '15px'
+                    }}
+                    onClick={handleSignOut}
+                  >
                     Sign Out
                   </button>
                 </li>
-                { currentUser.role === 'admin' && (
-                    <li className="nav-item">
-                      <Link className="nav-link" to={`/admin-profile/${currentUser.email}/all-users`}>
+                {currentUser.role === 'admin' && (
+                  <li>
+                    <Link
+                      to={`/admin-profile/${currentUser.email}/all-users`}
+                      style={{ color: 'white', textDecoration: 'none' }}
+                    >
                       All Users
                     </Link>
-                    </li>
-                  )
-                }
+                  </li>
+                )}
               </>
             )}
           </ul>
