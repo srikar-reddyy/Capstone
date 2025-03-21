@@ -1,0 +1,39 @@
+.navbar {
+padding: 1rem;
+}
+
+.navbar-brand {
+font-size: 1.5rem;
+font-weight: bold;
+}
+
+.navbar-nav .nav-item {
+margin-right: 1rem;
+}
+
+.btn-danger {
+font-size: 1rem;
+padding: 5px 15px;
+}
+
+.article-title {
+font-size: 2rem;
+font-weight: bold;
+}
+
+.article-content {
+font-size: 1.2rem;
+line-height: 1.6;
+background-color: #f8f9fa;
+padding: 15px;
+border-radius: 5px;
+}
+
+.comments {
+border-left: 4px solid #007bff;
+padding-left: 15px;
+}
+
+.btn-outline-warning, .btn-outline-danger, .btn-outline-info {
+font-size: 1.2rem;
+}
